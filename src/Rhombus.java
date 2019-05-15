@@ -1,9 +1,10 @@
 public class Rhombus {
 
-    public void printRhombus(int number) {
-        for (int i = 0; i < number; i ++){
-            for (int j = 0; j < number; j++) {
-                if (j == ((number/2) - i) || j == ((number/ 2) + i) || j == (-number/2 + i) || j == ((3 * number/2) - i - 1)) {
+    public void printRhombus(int ribSize) {
+        int twoRibSize = ribSize * 2;
+        for (int i = 0; i < twoRibSize - 1; i++){
+            for (int j = 0; j < twoRibSize - 1; j++) {
+                if (j == ((twoRibSize/2) - i - 1)|| j == ((twoRibSize/ 2) + i - 1) || j == (-twoRibSize/2 + i + 1) || j == ((3 * twoRibSize/2) - i - 3)) {
                     System.out.print("*");
                 } else {
                     System.out.print(" ");

@@ -15,7 +15,7 @@ public class WeekDays {
         days.put(7, "Sunday");
     }
 
-    public String getDayName(int number) {
+    public static String getDayName(int number) {
         return days.getOrDefault(number,"no such day");
     }
 }

@@ -6,31 +6,35 @@ import static java.util.stream.Collectors.toMap;
 
 public class Game {
 
-     public void startGame(String requiredText) {
-        String strToGuess = createStringToGuess(requiredText.length());
+    public void startGame(String requiredText) {
+        String requiredTextCopy = requiredText;
+
+        String strToGuess = createStringToGuess(requiredTextCopy.length());
         Set<String> setForEnteredValues = new HashSet<String>();
+        Scanner scanner = new Scanner(System.in);
 
         while (strToGuess.contains("*")) {
-            Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine().toLowerCase();
 
             if (!isAlpha(userInput)) {
-                System.out.println("Please enter the correct symbol(s), only letters can be used in name");
+                System.out.println("Please enter the correct symbol(s), only letters can be used in name and whitespace");
             }
             if (setForEnteredValues.contains(userInput)) {
-                System.out.println("You already entered this string");
+                System.out.println("You already entered this string, let's use another one");
             } else {
                 setForEnteredValues.add(userInput);
-                if (!requiredText.contains(userInput)) {
-                    System.out.println("Sorry but you didn't guess");
+                if (!requiredTextCopy.contains(userInput)) {
+                    System.out.println("Ooops but you didn't guess :(, let's try another one. You can do it!");
                 } else {
-                    while (requiredText.contains(userInput)) {
-                        int indexOfFinding = requiredText.indexOf(userInput);
+                    while (requiredTextCopy.contains(userInput)) {
+                        int indexOfFinding = requiredTextCopy.indexOf(userInput);
                         strToGuess = modifyStringToGuess(strToGuess, indexOfFinding, userInput);
-                        requiredText = modifyRequiredTextString(requiredText, indexOfFinding, userInput.length());
+                        requiredTextCopy = modifyRequiredTextString(requiredTextCopy, indexOfFinding, userInput.length());
                     }
-                    System.out.println("You guessed right!");
-                    System.out.println("try to guess now where *, your result is " + strToGuess);
+                    if (strToGuess.contains("*")) {
+                        System.out.println("Great job! You guessed right! :)");
+                        System.out.println("Now try to guess where * shown, your result for now is " + strToGuess);
+                    }
                 }
             }
         }
@@ -38,7 +42,7 @@ public class Game {
     }
 
     private boolean isAlpha(String userInputString) {
-        return userInputString.matches("[a-zA-Z]+");
+        return userInputString.matches("[a-zA-Z\\s]+");
     }
 
     private String createAsteriskString(int number) {

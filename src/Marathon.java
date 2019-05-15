@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.toMap;
 
 public class Marathon {
 
-    public Map<String, Integer> createHashMap(String[] namesArray, Integer[] timesArray) {
+    public Map<String, Integer> createMarathonResults(String[] namesArray, Integer[] timesArray) {
         HashMap<String, Integer> map = new HashMap<>();
         for (int i = 0; i < namesArray.length; i++) {
             map.put(namesArray[i], timesArray[i]);
@@ -31,8 +31,8 @@ public class Marathon {
         if (place > map.size()) {
             return "No such participant";
         } else {
-            Object nameOfParticipant = map.keySet().toArray()[map.size() - place];
-            Object timeOfParticipant = map.get(nameOfParticipant);
+            String nameOfParticipant = map.keySet().toArray()[place - 1].toString();
+            Integer timeOfParticipant = map.get(nameOfParticipant);
             return nameOfParticipant + " " + timeOfParticipant;
         }
     }
