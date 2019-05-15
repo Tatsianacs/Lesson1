@@ -7,12 +7,14 @@ import static java.util.stream.Collectors.toMap;
 
 public class Marathon {
 
+    Map<String, Integer> sortedMap;
+
     public Map<String, Integer> createMarathonResults(String[] namesArray, Integer[] timesArray) {
         HashMap<String, Integer> map = new HashMap<>();
         for (int i = 0; i < namesArray.length; i++) {
             map.put(namesArray[i], timesArray[i]);
         }
-        Map<String, Integer> sortedMap = sortByValue(map);
+        sortedMap = sortByValue(map);
         return sortedMap;
     }
 
@@ -27,12 +29,12 @@ public class Marathon {
         return sorted;
     }
 
-    public String getParticipantInfo(int place, Map<String, Integer> map) {
-        if (place > map.size()) {
+    public String getParticipantInfo(int place) {
+        if (place > sortedMap.size()) {
             return "No such participant";
         } else {
-            String nameOfParticipant = map.keySet().toArray()[place - 1].toString();
-            Integer timeOfParticipant = map.get(nameOfParticipant);
+            String nameOfParticipant = sortedMap.keySet().toArray()[place - 1].toString();
+            Integer timeOfParticipant = sortedMap.get(nameOfParticipant);
             return nameOfParticipant + " " + timeOfParticipant;
         }
     }

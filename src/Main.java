@@ -48,12 +48,12 @@ public class Main {
         System.out.println("Please enter below the place of the person to show info:");
         try {
             int enteredPlace = scanner.nextInt();
-            System.out.println("The person place and time: " + marathon.getParticipantInfo(enteredPlace,marathonMap ));
+            System.out.println("The person place and time: " + marathon.getParticipantInfo(enteredPlace));
         } catch (InputMismatchException e) {
             System.out.println("Invalid value, you should enter only whole numbers");
         }
-        System.out.println("Second place: " + marathon.getParticipantInfo(2, marathonMap));
-        System.out.println("Winner: " + marathon.getParticipantInfo(1, marathonMap));
+        System.out.println("Second place: " + marathon.getParticipantInfo(2));
+        System.out.println("Winner: " + marathon.getParticipantInfo(1));
 
 
         // Game
